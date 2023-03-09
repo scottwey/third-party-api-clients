@@ -163,17 +163,18 @@ impl FileOps for crate::files::Files {
         }
 
         self.list_all(
-            "drive",  // corpora
-            drive_id, // drive id
-            true,     // include_items_from_all_drives
-            "",       // include_permissions_for_view
-            false,    // include_team_drive_items
-            "",       // order_by
-            &query,   // query
-            "",       // spaces
-            true,     // supports_all_drives
-            false,    // supports_team_drives
-            "",       // team_drive_id
+            "drive",                    // corpora
+            drive_id,                   // drive id
+            true,                       // include_items_from_all_drives
+            "",                         // include_permissions_for_view
+            false,                      // include_team_drive_items
+            "",                         // order_by
+            &query,                     // query
+            "",                         // spaces
+            true,                       // supports_all_drives
+            false,                      // supports_team_drives
+            "",                         // team_drive_id
+            "id,name,parents,mimeType", // fields
         )
         .await
     }
@@ -302,17 +303,18 @@ impl FileOps for crate::files::Files {
         // Check if the folder exists.
         let folders = self
             .list_all(
-                "drive",  // corpora
-                drive_id, // drive id
-                true,     // include_items_from_all_drives
-                "",       // include_permissions_for_view
-                false,    // include_team_drive_items
-                "",       // order_by
-                &query,   // query
-                "",       // spaces
-                true,     // supports_all_drives
-                false,    // supports_team_drives
-                "",       // team_drive_id
+                "drive",                    // corpora
+                drive_id,                   // drive id
+                true,                       // include_items_from_all_drives
+                "",                         // include_permissions_for_view
+                false,                      // include_team_drive_items
+                "",                         // order_by
+                &query,                     // query
+                "",                         // spaces
+                true,                       // supports_all_drives
+                false,                      // supports_team_drives
+                "",                         // team_drive_id
+                "id,name,parents,mimeType", //fields
             )
             .await
             .unwrap_or_default();
