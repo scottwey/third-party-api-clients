@@ -49,6 +49,7 @@ impl Files {
         supports_all_drives: bool,
         supports_team_drives: bool,
         team_drive_id: &str,
+        fields: &str,
     ) -> Result<Vec<crate::types::File>> {
         let mut query_args: Vec<(String, String)> = Default::default();
         if !corpora.is_empty() {
@@ -105,6 +106,12 @@ impl Files {
         if !team_drive_id.is_empty() {
             query_args.push(("teamDriveId".to_string(), team_drive_id.to_string()));
         }
+        if !fields.is_empty() {
+            query_args.push((
+                "fields".to_string(),
+                format!("files({})", fields).to_string(),
+            ));
+        }
         let query_ = serde_urlencoded::to_string(&query_args).unwrap();
         let url = self.client.url(&format!("/files?{}", query_), None);
         let resp: crate::types::FileList = self
@@ -141,6 +148,7 @@ impl Files {
         supports_all_drives: bool,
         supports_team_drives: bool,
         team_drive_id: &str,
+        fields: &str,
     ) -> Result<Vec<crate::types::File>> {
         let mut query_args: Vec<(String, String)> = Default::default();
         if !corpora.is_empty() {
@@ -190,6 +198,12 @@ impl Files {
         }
         if !team_drive_id.is_empty() {
             query_args.push(("teamDriveId".to_string(), team_drive_id.to_string()));
+        }
+        if !fields.is_empty() {
+            query_args.push((
+                "fields".to_string(),
+                format!("files({})", fields).to_string(),
+            ));
         }
         let query_ = serde_urlencoded::to_string(&query_args).unwrap();
         let url = self.client.url(&format!("/files?{}", query_), None);
