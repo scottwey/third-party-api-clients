@@ -271,7 +271,10 @@ impl FileOps for crate::files::Files {
             .client
             .request_raw(
                 reqwest::Method::GET,
-                &format!("https://www.googleapis.com/upload/drive/v3/files/{}?supportsAllDrives=true&alt=media", id),
+                &format!(
+                    "https://www.googleapis.com/drive/v3/files/{}?supportsAllDrives=true&alt=media",
+                    id
+                ),
                 crate::Message::default(),
             )
             .await?;
@@ -327,7 +330,7 @@ impl FileOps for crate::files::Files {
         let folder: crate::types::File = self
             .client
             .post(
-                "https://www.googleapis.com/upload/drive/v3/files?supportsAllDrives=true&includeItemsFromAllDrives=true",
+                "https://www.googleapis.com/drive/v3/files?supportsAllDrives=true&includeItemsFromAllDrives=true",
                 crate::Message {
                     body: Some(reqwest::Body::from(serde_json::to_vec(&file)?)),
                     content_type: None,
@@ -350,7 +353,7 @@ impl FileOps for crate::files::Files {
             query_.push_str(n);
         }
         let url = format!(
-            "https://www.googleapis.com/upload/drive/v3/files/{}/export?{}",
+            "https://www.googleapis.com/drive/v3/files/{}/export?{}",
             crate::progenitor_support::encode_path(id),
             query_
         );
